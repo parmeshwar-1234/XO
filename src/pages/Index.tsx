@@ -11,10 +11,10 @@ const Index: React.FC = () => {
     <main className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
       <header className="pt-10 pb-6 text-center">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-          <span className="gradient-text">IMAGE STUDIO</span>
+          <span className="gradient-text">Xpert-Optimiser</span>
         </h1>
         <p className="mt-2 text-muted-foreground text-lg">
-          Professional image editing — entirely in your browser
+          XO aims to become a trusted, free, and secure optimization hub where users can analyze, transform, and compress media assets with expert-level precision — directly from the browser.
         </p>
       </header>
 
