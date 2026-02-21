@@ -290,13 +290,13 @@ const PdfCompressor: React.FC = () => {
               e.preventDefault();
               e.stopPropagation();
             }}
-            className="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center hover:border-primary/60 transition cursor-pointer bg-primary/5"
+            className="border-2 border-dashed border-primary/30 rounded-lg p-4 sm:p-8 text-center hover:border-primary/60 transition cursor-pointer bg-primary/5"
           >
-            <FileUp className="w-12 h-12 mx-auto mb-3 text-primary/60" />
-            <p className="text-foreground font-semibold mb-1">
+            <FileUp className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-3 text-primary/60" />
+            <p className="text-sm sm:text-base text-foreground font-semibold mb-1">
               Drop PDF files here or click to select
             </p>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
               Supported: PDF files (no size limit)
             </p>
             <input
@@ -317,44 +317,44 @@ const PdfCompressor: React.FC = () => {
           </div>
 
           {files.length > 0 && (
-            <div className="grid grid-cols-3 gap-3">
-              <div className="bg-muted/50 rounded-lg p-3 text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+              <div className="bg-muted/50 rounded-lg p-2 sm:p-3 text-center">
                 <p className="text-xs text-muted-foreground mb-1">Files</p>
-                <p className="text-lg font-bold">{files.length}</p>
+                <p className="text-base sm:text-lg font-bold">{files.length}</p>
               </div>
-              <div className="bg-muted/50 rounded-lg p-3 text-center">
-                <p className="text-xs text-muted-foreground mb-1">Original Size</p>
-                <p className="text-lg font-bold">{formatFileSize(totalOriginalSize)}</p>
+              <div className="bg-muted/50 rounded-lg p-2 sm:p-3 text-center">
+                <p className="text-xs text-muted-foreground mb-1">Original</p>
+                <p className="text-base sm:text-lg font-bold">{formatFileSize(totalOriginalSize)}</p>
               </div>
-              <div className="bg-muted/50 rounded-lg p-3 text-center">
+              <div className="bg-muted/50 rounded-lg p-2 sm:p-3 text-center col-span-2 sm:col-span-1">
                 <p className="text-xs text-muted-foreground mb-1">Saved</p>
-                <p className="text-lg font-bold text-green-500">{compressionRatio}%</p>
+                <p className="text-base sm:text-lg font-bold text-green-500">{compressionRatio}%</p>
               </div>
             </div>
           )}
 
           {files.length > 0 && (
-            <div className="space-y-3 max-h-[600px] overflow-y-auto">
+            <div className="space-y-2 sm:space-y-3 max-h-[600px] overflow-y-auto">
               {files.map((pdf) => (
                 <div
                   key={pdf.id}
-                  className="p-4 bg-muted/30 rounded-lg border border-border/30 space-y-3"
+                  className="p-3 sm:p-4 bg-muted/30 rounded-lg border border-border/30 space-y-2 sm:space-y-3"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <p className="text-sm font-medium truncate">{pdf.file.name}</p>
-                      <div className="flex flex-wrap gap-2 mt-2 text-xs">
+                  <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium truncate">{pdf.file.name}</p>
+                      <div className="flex flex-wrap gap-1 sm:gap-2 mt-1 sm:mt-2 text-xs">
                         <span className="text-muted-foreground">
-                          Original: <span className="font-semibold">{formatFileSize(pdf.originalSize)}</span>
+                          Orig: <span className="font-semibold">{formatFileSize(pdf.originalSize)}</span>
                         </span>
                         {!pdf.compressed && (
                           <span className="text-primary">
-                            Expected: <span className="font-semibold">{formatFileSize(pdf.estimatedSize || 0)}</span>
+                            Exp: <span className="font-semibold">{formatFileSize(pdf.estimatedSize || 0)}</span>
                           </span>
                         )}
                         {pdf.compressedSize && (
                           <span className="text-green-500">
-                            Actual: <span className="font-semibold">{formatFileSize(pdf.compressedSize)}</span>
+                            Act: <span className="font-semibold">{formatFileSize(pdf.compressedSize)}</span>
                           </span>
                         )}
                       </div>
@@ -362,7 +362,7 @@ const PdfCompressor: React.FC = () => {
                         <p className="text-xs text-destructive mt-1">{pdf.error}</p>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
                       {pdf.compressing ? (
                         <Loader2 className="w-5 h-5 animate-spin text-primary flex-shrink-0" />
                       ) : pdf.compressed ? (
@@ -373,9 +373,10 @@ const PdfCompressor: React.FC = () => {
                             onClick={() => handleEdit(pdf.id)}
                             disabled={processingAll}
                             variant="outline"
+                            className="text-xs sm:text-sm"
                           >
-                            <Edit2 className="w-4 h-4 mr-1" />
-                            Edit
+                            <Edit2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                            <span className="hidden sm:inline">Edit</span>
                           </Button>
                         </>
                       ) : (
@@ -384,8 +385,9 @@ const PdfCompressor: React.FC = () => {
                           onClick={() => handleCompress(pdf.id)}
                           disabled={processingAll || !libsLoaded}
                           variant="outline"
+                          className="text-xs"
                         >
-                          <Download className="w-4 h-4" />
+                          <Download className="w-3 h-3 sm:w-4 sm:h-4" />
                         </Button>
                       )}
                       <Button
@@ -393,17 +395,17 @@ const PdfCompressor: React.FC = () => {
                         onClick={() => handleRemove(pdf.id)}
                         disabled={processingAll || pdf.compressing}
                         variant="ghost"
-                        className="hover:text-destructive"
+                        className="hover:text-destructive p-0 h-auto"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                       </Button>
                     </div>
                   </div>
 
                   {!pdf.compressed && (
-                    <div className="space-y-2 pt-2 border-t border-border/30">
+                    <div className="space-y-1 sm:space-y-2 pt-2 border-t border-border/30">
                       <div className="flex justify-between items-center">
-                        <label className="text-xs font-semibold">Compression Quality</label>
+                        <label className="text-xs font-semibold">Quality</label>
                         <span className="text-xs font-mono bg-primary/20 px-2 py-1 rounded">
                           {pdf.quality}%
                         </span>
@@ -429,7 +431,7 @@ const PdfCompressor: React.FC = () => {
                         disabled={processingAll || pdf.compressing}
                       />
                       <p className="text-xs text-muted-foreground">
-                        Adjust quality to change the compression level
+                        Adjust quality level
                       </p>
                     </div>
                   )}
@@ -439,7 +441,7 @@ const PdfCompressor: React.FC = () => {
           )}
 
           {files.length > 0 && (
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Button
                 onClick={handleCompressAll}
                 disabled={processingAll || !libsLoaded || files.every(f => f.compressed)}
@@ -447,17 +449,17 @@ const PdfCompressor: React.FC = () => {
               >
                 {processingAll ? (
                   <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Compressing...
+                    <Loader2 className="w-3 h-3 sm:w-4 sm:h-4 mr-2 animate-spin" />
+                    <span className="text-xs sm:text-base">Compressing...</span>
                   </>
                 ) : (
                   <>
-                    <Zap className="w-4 h-4 mr-2" />
-                    Compress All
+                    <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                    <span className="text-xs sm:text-base">Compress All</span>
                   </>
                 )}
               </Button>
-              <Button onClick={handleClear} variant="outline" disabled={processingAll}>
+              <Button onClick={handleClear} variant="outline" disabled={processingAll} className="flex-1 sm:flex-none">
                 Clear
               </Button>
             </div>

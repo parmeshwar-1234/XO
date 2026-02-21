@@ -76,14 +76,17 @@ const Index: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+            <button
+              onClick={() => setActiveFeature('home')}
+              className="flex items-center gap-2 hover:opacity-80 transition"
+            >
               <h1 className="text-xl sm:text-2xl font-bold">
                 <span className="gradient-text">
                   <span className="sm:hidden">XO</span>
                   <span className="hidden sm:inline">Xpert-Optimiser</span>
                 </span>
               </h1>
-            </div>
+            </button>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1">
