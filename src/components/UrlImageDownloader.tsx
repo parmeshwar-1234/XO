@@ -98,7 +98,7 @@ const UrlImageDownloader: React.FC = () => {
           <label className="text-sm font-medium text-foreground flex items-center gap-2">
             <Link2 className="w-4 h-4 text-primary" /> Image URL
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Input
               placeholder="https://example.com/image.jpg"
               value={url}
@@ -106,7 +106,7 @@ const UrlImageDownloader: React.FC = () => {
               onKeyDown={handleKeyDown}
               className="flex-1"
             />
-            <Button onClick={loadImage} disabled={loading || !url.trim()}>
+            <Button onClick={loadImage} disabled={loading || !url.trim()} className="w-full sm:w-auto shrink-0">
               {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImageIcon className="w-4 h-4" />}
               <span className="ml-2">{loading ? 'Loading…' : 'Load'}</span>
             </Button>

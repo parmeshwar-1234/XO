@@ -119,7 +119,7 @@ const WebPConverter: React.FC = () => {
           <Card className="glass">
             <CardContent className="p-4 space-y-3">
               {files.map((item, i) => (
-                <div key={i} className="flex items-center gap-3 py-2 border-b border-border/30 last:border-0">
+                <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 py-2 border-b border-border/30 last:border-0">
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{item.file.name}</p>
                     <p className="text-xs text-muted-foreground">
@@ -129,7 +129,7 @@ const WebPConverter: React.FC = () => {
                       )}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                     {item.status === 'converting' && <Progress value={item.progress} className="h-2 w-20" />}
                     {item.status === 'done' && (
                       <span className="flex items-center gap-1 text-xs text-emerald-400">
@@ -194,7 +194,7 @@ const WebPConverter: React.FC = () => {
             </CardContent>
           </Card>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {hasPending && (
               <Button
                 onClick={convertAll}

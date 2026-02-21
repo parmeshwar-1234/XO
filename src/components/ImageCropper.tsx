@@ -196,12 +196,12 @@ const ImageCropper: React.FC = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4 sm:gap-6">
         {/* Cropper area */}
         <Card className="glass overflow-hidden">
           <CardContent className="p-0">
-            <div className="relative w-full" style={{ height: '500px' }}>
+            <div className="relative w-full" style={{ height: 'clamp(280px, 50vh, 500px)' }}>
               {isFreeMode ? (
                 <FreeCropBox
                   imageSrc={imageSrc}
@@ -243,7 +243,7 @@ const ImageCropper: React.FC = () => {
         </Card>
 
         {/* Controls */}
-        <div className="flex flex-col gap-4 overflow-y-auto max-h-[700px] pr-1">
+        <div className="flex flex-col gap-3 sm:gap-4 overflow-y-auto lg:max-h-[700px] pr-1">
           {/* Info */}
           <Card className="glass">
             <CardContent className="p-4 text-sm space-y-1">
@@ -267,7 +267,7 @@ const ImageCropper: React.FC = () => {
           <Card className="glass">
             <CardContent className="p-4 space-y-3">
               <label className="text-sm font-medium text-foreground">Aspect Ratio</label>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {ASPECT_RATIOS.map((ar) => (
                   <Button
                     key={ar.label}
@@ -383,15 +383,15 @@ const ImageCropper: React.FC = () => {
           </Card>
 
           {/* Actions */}
-          <div className="flex gap-2">
-            <Button variant="secondary" size="sm" onClick={handleReset} className="flex-1">
-              <RefreshCw className="w-4 h-4 mr-1" /> Reset
+          <div className="flex flex-wrap gap-2">
+            <Button variant="secondary" size="sm" onClick={handleReset} className="flex-1 min-w-[80px] text-xs sm:text-sm">
+              <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" /> Reset
             </Button>
-            <Button variant="secondary" size="sm" onClick={handlePreview} className="flex-1">
-              <Eye className="w-4 h-4 mr-1" /> Compare
+            <Button variant="secondary" size="sm" onClick={handlePreview} className="flex-1 min-w-[80px] text-xs sm:text-sm">
+              <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" /> Compare
             </Button>
-            <Button variant="destructive" size="sm" onClick={handleClear} className="flex-1">
-              <Trash2 className="w-4 h-4 mr-1" /> Clear
+            <Button variant="destructive" size="sm" onClick={handleClear} className="flex-1 min-w-[80px] text-xs sm:text-sm">
+              <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" /> Clear
             </Button>
           </div>
           <Button onClick={handleDownload} disabled={processing} className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground">

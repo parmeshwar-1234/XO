@@ -47,7 +47,7 @@ const DropZone: React.FC<DropZoneProps> = ({
 
   return (
     <label
-      className={`upload-zone flex flex-col items-center justify-center gap-4 p-12 text-center ${dragging ? 'dragging' : ''}`}
+      className={`upload-zone flex flex-col items-center justify-center gap-3 sm:gap-4 p-6 sm:p-12 text-center ${dragging ? 'dragging' : ''}`}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
       onDragOver={handleDrag}
@@ -60,7 +60,7 @@ const DropZone: React.FC<DropZoneProps> = ({
         onChange={handleChange}
         className="hidden"
       />
-      <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
         {dragging ? (
           <ImageIcon className="w-8 h-8 text-primary animate-pulse" />
         ) : (
@@ -68,8 +68,8 @@ const DropZone: React.FC<DropZoneProps> = ({
         )}
       </div>
       <div>
-        <p className="text-lg font-medium text-foreground">{label}</p>
-        <p className="text-sm text-muted-foreground mt-1">{sublabel}</p>
+        <p className="text-base sm:text-lg font-medium text-foreground">{label}</p>
+        <p className="text-xs sm:text-sm text-muted-foreground mt-1">{sublabel}</p>
       </div>
     </label>
   );
