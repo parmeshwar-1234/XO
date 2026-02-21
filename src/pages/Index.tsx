@@ -1,11 +1,12 @@
 import React from 'react';
-import { Crop, FileSearch, ArrowRightLeft, Maximize2, Link2 } from 'lucide-react';
+import { Crop, FileSearch, ArrowRightLeft, Maximize2, Link2, Zap } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ImageCropper from '@/components/ImageCropper';
 import ImageAnalyzer from '@/components/ImageAnalyzer';
 import WebPConverter from '@/components/WebPConverter';
 import ImageResizer from '@/components/ImageResizer';
 import UrlImageDownloader from '@/components/UrlImageDownloader';
+import PdfCompressor from '@/components/PdfCompressor';
 
 const Index: React.FC = () => {
   return (
@@ -35,6 +36,9 @@ const Index: React.FC = () => {
             <TabsTrigger value="url-download" className="flex-1 min-w-0 gap-1 sm:gap-2 text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-2 sm:px-3">
               <Link2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" /> <span className="truncate">URL</span>
             </TabsTrigger>
+            <TabsTrigger value="pdf-compress" className="flex-1 min-w-0 gap-1 sm:gap-2 text-xs sm:text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground px-2 sm:px-3">
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" /> <span className="truncate">PDF</span>
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="cropper"><ImageCropper /></TabsContent>
@@ -42,6 +46,7 @@ const Index: React.FC = () => {
           <TabsContent value="resizer"><ImageResizer /></TabsContent>
           <TabsContent value="converter"><WebPConverter /></TabsContent>
           <TabsContent value="url-download"><UrlImageDownloader /></TabsContent>
+          <TabsContent value="pdf-compress"><PdfCompressor /></TabsContent>
         </Tabs>
       </section>
     </main>
