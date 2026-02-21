@@ -230,7 +230,6 @@ const ImageCropper: React.FC = () => {
                   onRotationChange={setRotation}
                   onCropComplete={onCropComplete}
                   showGrid
-                  classes={{ cropAreaClassName: 'crop-area-with-handles' }}
                   style={{
                     containerStyle: { borderRadius: 'var(--radius)' },
                     mediaStyle: {
