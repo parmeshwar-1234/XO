@@ -6,6 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
 import DropZone from './DropZone';
+import LoadingDots from './LoadingDots';
 import { downloadBlob, formatFileSize } from '@/lib/canvas-utils';
 
 const SOCIAL_PRESETS = [

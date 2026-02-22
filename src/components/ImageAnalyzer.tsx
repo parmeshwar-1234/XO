@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { FileSearch, Image as ImageIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import DropZone from './DropZone';
+import LoadingDots from './LoadingDots';
 import { formatFileSize, getSimplifiedRatio } from '@/lib/canvas-utils';
 
 interface ImageMeta {
@@ -18,10 +19,12 @@ interface ImageMeta {
 
 const ImageAnalyzer: React.FC = () => {
   const [meta, setMeta] = useState<ImageMeta | null>(null);
+  const [analyzing, setAnalyzing] = useState(false);
 
   const onFileSelected = useCallback((files: File[]) => {
     const file = files[0];
     if (!file) return;
+    setAnalyzing(true);
     const reader = new FileReader();
     reader.onload = () => {
       const dataUrl = reader.result as string;
@@ -38,11 +41,20 @@ const ImageAnalyzer: React.FC = () => {
           orientation: img.width > img.height ? 'Landscape' : img.width < img.height ? 'Portrait' : 'Square',
           dataUrl,
         });
+        setAnalyzing(false);
       };
       img.src = dataUrl;
     };
     reader.readAsDataURL(file);
   }, []);
+
+  if (analyzing) {
+    return (
+      <div className="flex items-center justify-center min-h-96 rounded-3xl bg-white/50 dark:bg-gray-800/50">
+        <LoadingDots size="md" text="Analyzing image..." />
+      </div>
+    );
+  }
 
   if (!meta) {
     return <DropZone onFilesSelected={onFileSelected} label="Drop an image to analyze" sublabel="Get detailed image metadata instantly" />;
