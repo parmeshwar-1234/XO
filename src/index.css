@@ -515,3 +515,41 @@
     background-position: center;
   }
 }
+
+/* Hide tooltips on mobile devices */
+@media (max-width: 768px) {
+  /* Hide data attribute tooltips */
+  [data-tooltip]::before,
+  [data-tooltip]::after {
+    display: none !important;
+  }
+
+  /* Hide tooltip container tooltips */
+  .tooltip-container:hover .tooltip,
+  .tooltip-container:focus-within .tooltip {
+    display: none !important;
+  }
+
+  .tooltip {
+    display: none !important;
+  }
+
+  /* Alternative: Make them non-interactive on mobile */
+  /* Uncomment if you want tooltips visible but not interactive */
+  /*
+  [data-tooltip]::before,
+  [data-tooltip]::after {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  */
+}
+
+/* For smaller screens (phones) */
+@media (max-width: 480px) {
+  [data-tooltip]::before,
+  [data-tooltip]::after {
+    display: none !important;
+  }
+}
